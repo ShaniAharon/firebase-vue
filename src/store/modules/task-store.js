@@ -53,7 +53,6 @@ export default {
     async saveTask({ commit }, { task }) {
       try {
         const savedTask = await taskService.save(task)
-        console.log('savedTask', savedTask);
         commit({ type: 'saveTask', task: savedTask })
       } catch (err) {
         console.error('Cannot save task', err);

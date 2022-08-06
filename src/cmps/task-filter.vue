@@ -31,7 +31,6 @@
     },
     methods: {
       setFilter() {
-        console.log('this.filterBy', this.filterBy)
         this.$emit('filtered', JSON.parse(JSON.stringify(this.filterBy)))
       },
     },
