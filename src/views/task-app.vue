@@ -1,5 +1,5 @@
 <template>
-  <main class="main-layout-container flex-col">
+  <main v-if="!isLoading" class="main-layout-container flex-col">
     <section class="flex action-container space-between">
       <task-filter @filtered="setFilter" />
       <button @click="addTask" class="add-btn btn btn-warning">Add Task</button>
@@ -11,6 +11,9 @@
       :tasks="tasks"
     />
   </main>
+  <div class="loading" v-else>
+    <img src="../assets/img/whale.gif" alt="" />
+  </div>
 </template>
 
 <script>
@@ -47,6 +50,9 @@
     computed: {
       tasks() {
         return this.$store.getters.tasks
+      },
+      isLoading() {
+        return this.$store.getters.isLoading
       },
     },
     unmounted() {},

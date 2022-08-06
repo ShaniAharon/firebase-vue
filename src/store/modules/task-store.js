@@ -38,7 +38,7 @@ export default {
   },
   actions: {
     async loadTasks({ commit, state }) {
-      // commit({type: 'setIsLoading', isLoading: true});
+      commit({ type: 'setIsLoading', isLoading: true });
       try {
         var tasks = await taskService.query(state.filterBy);
         commit({ type: 'setTasks', tasks });
@@ -46,9 +46,12 @@ export default {
         console.error('Cannot Load tasks', err);
         throw err;
       }
-      // finally {
-      //   commit({type: 'setIsLoading', isLoading: false});
-      // }
+      finally {
+        setTimeout(() => {
+
+          commit({ type: 'setIsLoading', isLoading: false });
+        }, 3000)
+      }
     },
     async saveTask({ commit }, { task }) {
       try {
@@ -75,9 +78,9 @@ export default {
         console.log(err);
       }
     },
-    filter({ commit, dispatch }, { filterBy }) {
+    async filter({ commit, dispatch }, { filterBy }) {
       commit({ type: 'setFilter', filterBy });
-      dispatch({ type: 'loadTasks' });
+      await dispatch({ type: 'loadTasks' });
     },
   },
 };

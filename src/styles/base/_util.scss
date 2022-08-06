@@ -479,6 +479,15 @@ img {
   color: var(--teal-500);
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 90.4vh;
+  }
+}
+
 /** responsive **/
 @media (min-width: 576px) {
   html {

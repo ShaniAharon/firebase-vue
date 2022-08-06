@@ -22,10 +22,6 @@
         <span class="fw-bold clr-teal uppercase">Status: </span>
         {{ task.status }}
       </p>
-      <p>
-        <span class="fw-bold clr-teal uppercase">is done: </span>
-        {{ task.status ? 'true' : 'false' }}
-      </p>
     </div>
     <button @click="goBack" class="btn btn-warning">go back</button>
   </section>
@@ -40,10 +36,11 @@
         task: null,
       }
     },
-    created() {},
+    created() {
+      this.loadTask()
+    },
     methods: {
       async loadTask() {
-        if (!this.taskId) return // prevent the run of the watcher when change route
         const task = await this.$store.dispatch({
           type: 'getTaskById',
           taskId: this.taskId,
@@ -59,25 +56,6 @@
         return this.$route.params.taskId
       },
     },
-    watch: {
-      // when the computed taskId run the watch handler also run
-      taskId: {
-        handler() {
-          this.loadTask()
-        },
-        immediate: true, //run the watch on the start / run eagerly
-      },
-    },
     unmounted() {},
   }
 </script>
-
-<style>
-  .main-content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    /* margin: 0 auto; */
-  }
-</style>
