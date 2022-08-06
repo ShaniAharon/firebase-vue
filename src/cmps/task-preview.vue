@@ -7,7 +7,7 @@
     </div>
     <div class="btn-container">
       <button>
-        <img src="../assets/list-img.png" alt="" />
+        <!-- <img src="../assets/list-img.png" alt="" /> -->
       </button>
     </div>
   </div>

@@ -28,8 +28,11 @@ async function removeTask(taskId) {
 
 function getEmptyTask() {
   return {
-    txt: '',
+    title: '',
+    description: '',
     importance: 0,
-    isDone: false,
+    createdAt: Date.now(),
+    doneAt: null,
+    status: ''
   }
 }
