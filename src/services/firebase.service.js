@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {
     addDoc, collection, deleteDoc, getDoc, doc,
-    getDocs, getFirestore, updateDoc, query, where, orderBy, startAt, endAt
+    getDocs, getFirestore, updateDoc, query, orderBy, startAt, endAt
 } from "firebase/firestore";
 
 export const firebaseService = {
