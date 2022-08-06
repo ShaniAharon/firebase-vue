@@ -1,0 +1,14 @@
+.task-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem auto;
+  background-color: var(--green-50);
+  max-width: 30rem;
+  padding: 2rem;
+
+  .inner-txt {
+    text-align: start;
+  }
+}
