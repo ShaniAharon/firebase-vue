@@ -1,7 +1,9 @@
 <template>
   <header class="main-header flex">
     <div class="flex justify-between main-layout-container">
-      <h1><span class="clr-teal">mister</span>Firebase</h1>
+      <h1 @click="goHome" class="logo">
+        <span class="clr-teal">mister</span>Firebase
+      </h1>
     </div>
   </header>
 </template>
@@ -13,7 +15,12 @@
       return {}
     },
     created() {},
-    methods: {},
+    methods: {
+      goHome() {
+        console.log('run')
+        this.$router.push('/')
+      },
+    },
     computed: {},
     unmounted() {},
   }

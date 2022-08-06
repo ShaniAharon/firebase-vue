@@ -13,6 +13,9 @@ export default {
     isLoading(state) {
       return state.isLoading;
     },
+    filterBy(state) {
+      return state.filterBy;
+    },
   },
   mutations: {
     setTasks(state, { tasks }) {
@@ -48,9 +51,8 @@ export default {
       }
       finally {
         setTimeout(() => {
-
           commit({ type: 'setIsLoading', isLoading: false });
-        }, 3000)
+        }, 500);
       }
     },
     async saveTask({ commit }, { task }) {

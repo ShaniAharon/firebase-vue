@@ -4,6 +4,7 @@
       <input
         type="text"
         class="input-search"
+        ref="searchInput"
         v-model="filterBy.txt"
         placeholder="Search "
         @input="setFilter"
@@ -25,7 +26,11 @@
       }
     },
     created() {
+      this.filterBy.txt = this.$store.getters.filterBy?.txt || ''
       this.setFilter = utilService.debounce(this.setFilter, 400)
+    },
+    mounted() {
+      this.$refs.searchInput.focus()
     },
     methods: {
       setFilter() {
@@ -34,5 +39,3 @@
     },
   }
 </script>
-
-<style></style>
