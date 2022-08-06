@@ -40,7 +40,7 @@ export default {
     async loadTasks({ commit, state }) {
       // commit({type: 'setIsLoading', isLoading: true});
       try {
-        var tasks = await taskService.query(state.filterBy);
+        var tasks = await taskService.query();
         commit({ type: 'setTasks', tasks });
       } catch (err) {
         console.error('Cannot Load tasks', err);
@@ -53,6 +53,7 @@ export default {
     async saveTask({ commit }, { task }) {
       try {
         const savedTask = await taskService.save(task)
+        console.log('savedTask', savedTask);
         commit({ type: 'saveTask', task: savedTask })
       } catch (err) {
         console.error('Cannot save task', err);

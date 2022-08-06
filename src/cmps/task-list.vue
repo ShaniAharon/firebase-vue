@@ -1,11 +1,14 @@
 <template>
-  <section class="task-list container-layout column">
-    <task-preview
-      v-for="task in tasks"
-      :key="task._id"
-      :task="task"
-      @remove="removeTask"
-    />
+  <section class="task-list flex flex-col items-start gap-1">
+    <main class="flex items-start gap-2">
+      <task-preview
+        v-for="task in tasks"
+        :key="task._id"
+        :task="task"
+        @remove="removeTask"
+        @detail="taskDetails"
+      />
+    </main>
   </section>
 </template>
 <script>
@@ -14,7 +17,7 @@
   export default {
     name: 'TaskList',
     props: ['tasks'],
-    emits: ['removed', 'showDetails'],
+    emits: ['removed', 'details'],
     components: {
       taskPreview,
     },
@@ -23,8 +26,11 @@
     },
     created() {},
     methods: {
-      removeTask(projId) {
-        this.$emit('removed', projId)
+      removeTask(taskId) {
+        this.$emit('removed', taskId)
+      },
+      taskDetails(taskId) {
+        this.$emit('details', taskId)
       },
     },
     computed: {},

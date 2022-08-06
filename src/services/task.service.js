@@ -8,7 +8,7 @@ export const taskService = {
   getEmptyTask,
 }
 
-const collection = 'todo'
+const collection = 'task'
 
 async function query() {
   return firebaseService.query(collection)

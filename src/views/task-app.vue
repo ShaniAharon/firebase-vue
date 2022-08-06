@@ -3,7 +3,12 @@
   <section>
     <task-filter />
   </section>
-  <task-list @removed="removeTask" v-if="tasks" :tasks="tasks" />
+  <task-list
+    @removed="removeTask"
+    @details="showDetails"
+    v-if="tasks"
+    :tasks="tasks"
+  />
 </template>
 
 <script>
@@ -26,6 +31,9 @@
     methods: {
       removeTask(taskId) {
         this.$store.dispatch({type: 'removeTask', id: taskId})
+      },
+      showDetails(taskId) {
+        this.$router.push(`/task/${taskId}`)
       },
       setFilter(filterBy) {
         this.$store.dispatch({type: 'filter', filterBy})

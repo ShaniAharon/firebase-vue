@@ -16,7 +16,6 @@ const firebaseConfig = {
     storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
     messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
     appId: import.meta.env.VITE_FIREBASE_APP_ID,
-    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -31,7 +30,8 @@ async function query(collectionName) {
         const tasksSnapshot = await getDocs(collection(db, collectionName))
         console.log('tasksSnapshot', tasksSnapshot)
         return tasksSnapshot.docs.map((doc) => {
-            return { _id: doc.id, ...doc.data(), createdAt: doc.data().createdAt?.toDate() || new Date() }
+            //doc.data().createdAt?.toDate()
+            return { _id: doc.id, ...doc.data(), createdAt: new Date() }
         })
     } catch (e) {
         console.error("Error geting documents: ", e);
@@ -54,10 +54,13 @@ async function getEntityById(collectionName, entityId) {
 
 async function saveEntity(collectionName, entity) {
     if (entity._id) {
+        const copyEntitiy = JSON.parse(JSON.stringify(entity))
         const entityRef = doc(db, collectionName, entity._id)
-        delete entity._id
+        delete copyEntitiy._id
         try {
-            await updateDoc(entityRef, entity)
+            const saved = await updateDoc(entityRef, copyEntitiy)
+            // console.log('saved fire', saved);
+            return entity
         } catch (e) {
             console.error("Error updating document: ", e);
         }
@@ -67,6 +70,7 @@ async function saveEntity(collectionName, entity) {
                 ...entity,
                 createdAt: serverTimestamp(),
             })
+            return entity
         } catch (e) {
             console.error("Error saving document: ", e);
         }

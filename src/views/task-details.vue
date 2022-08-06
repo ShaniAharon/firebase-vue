@@ -1,13 +1,32 @@
 <template>
-  <div v-if="isShow && task" @click="closeModal" class="modal">
-    <form @submit.prevent class="form-details">
-      <h1>{{ task?.label }} task details</h1>
-      {{ task }}
-      <div class="img-container">
-        <img class="details-img" v-if="task" :src="showTask" alt="" />
-      </div>
-    </form>
-  </div>
+  <section class="flex flex-col gap-2" v-if="task">
+    <h1>Todo Details</h1>
+    <p>
+      <span class="fw-bold clr-teal uppercase">id: </span>
+      {{ task._id }}
+    </p>
+    <p>
+      <span class="fw-bold clr-teal uppercase">title: </span>
+      {{ task.title }}
+    </p>
+    <p>
+      <span class="fw-bold clr-teal uppercase">Description: </span>
+      {{ task.description }}
+    </p>
+    <p>
+      <span class="fw-bold clr-teal uppercase">importance: </span>
+      {{ task.importance }}
+    </p>
+    <p>
+      <span class="fw-bold clr-teal uppercase">Status: </span>
+      {{ task.status }}
+    </p>
+    <p>
+      <span class="fw-bold clr-teal uppercase">is done: </span>
+      {{ task.status ? 'true' : 'false' }}
+    </p>
+    <button @click="goBack" class="btn btn-warning">go back</button>
+  </section>
 </template>
 
 <script>
@@ -17,7 +36,6 @@
     data() {
       return {
         task: null,
-        isShow: true,
       }
     },
     created() {},
@@ -29,37 +47,23 @@
           taskId: this.taskId,
         })
         this.task = task
-        this.isShow = true
       },
-      closeModal() {
-        this.$emit('closeDetails')
+      goBack() {
+        this.$router.push('/')
       },
     },
     computed: {
-      //opt 2 use computed for the taskId
       taskId() {
         return this.$route.params.taskId
       },
-      showTask() {
-        console.log(this.task)
-        return this.task.imgUrl
-      },
     },
-    //opt1 use the param specf as the func
-    //   watch: {
-    //     '$route.params.taskId'(id) {
-    //       console.log('Changed to', id);
-    //       this.loadTask();
-    //     },
-    //   },
-    //opt 2
     watch: {
       // when the computed taskId run the watch handler also run
       taskId: {
         handler() {
           this.loadTask()
         },
-        immediate: true, //to also run the watch on the start / run eagerly
+        immediate: true, //run the watch on the start / run eagerly
       },
     },
     unmounted() {},

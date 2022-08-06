@@ -1,22 +1,22 @@
 <template>
-  <div class="task-preview flex space-between">
-    <div class="info flex">
-      <h5>{{ formatPrice }}</h5>
-      <div class="img-placeholder"></div>
-      <h5 class="item-name">{{ task.name }}</h5>
+  <article class="task flex flex-col gap-1 p-3">
+    <h3 class="task__txt clr-teal uppercase">{{ task.title }}</h3>
+    <p>
+      <span class="fw-bold">Created At: </span>
+      {{ task.createdAt }}
+    </p>
+    <div class="btn-group actions">
+      <button class="btn btn-primary" @click="showDetails">details</button>
+      <button class="btn btn-info" @click="editTask">edit</button>
+      <button class="btn btn-danger" @click="removeTask">delete</button>
     </div>
-    <div class="btn-container">
-      <button>
-        <!-- <img src="../assets/list-img.png" alt="" /> -->
-      </button>
-    </div>
-  </div>
+  </article>
 </template>
 <script>
   export default {
     name: 'TaskPreview',
     props: ['task'],
-    emits: ['remove'],
+    emits: ['remove', 'detail'],
     components: {},
     data() {
       return {}
@@ -25,6 +25,12 @@
     methods: {
       removeTask() {
         this.$emit('remove', this.task._id)
+      },
+      showDetails() {
+        this.$emit('detail', this.task._id)
+      },
+      editTask() {
+        this.$router.push(`/task/edit/${this.task._id}`)
       },
     },
     computed: {
