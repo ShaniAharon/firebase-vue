@@ -1,0 +1,9 @@
+.task {
+  border: 2px solid var(--gray-300);
+  border-radius: 0.5rem;
+  transition: var(--transition);
+}
+
+.task:hover {
+  border-color: var(--gray-500);
+}
