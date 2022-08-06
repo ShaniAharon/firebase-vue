@@ -1,15 +1,16 @@
 <template>
-  <main class="main-layout-container"></main>
-  <section>
-    <task-filter @filtered="setFilter" />
-  </section>
-  <button @click="addTask" class="btn btn-warning">Add Task</button>
-  <task-list
-    @removed="removeTask"
-    @details="showDetails"
-    v-if="tasks"
-    :tasks="tasks"
-  />
+  <main class="main-layout-container flex-col">
+    <section class="flex action-container space-between">
+      <task-filter @filtered="setFilter" />
+      <button @click="addTask" class="add-btn btn btn-warning">Add Task</button>
+    </section>
+    <task-list
+      @removed="removeTask"
+      @details="showDetails"
+      v-if="tasks"
+      :tasks="tasks"
+    />
+  </main>
 </template>
 
 <script>

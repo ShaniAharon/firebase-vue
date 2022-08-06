@@ -1,30 +1,32 @@
 <template>
-  <section class="flex flex-col gap-2" v-if="task">
+  <section class="task-details gap-2" v-if="task">
     <h1>Todo Details</h1>
-    <p>
-      <span class="fw-bold clr-teal uppercase">id: </span>
-      {{ task._id }}
-    </p>
-    <p>
-      <span class="fw-bold clr-teal uppercase">title: </span>
-      {{ task.title }}
-    </p>
-    <p>
-      <span class="fw-bold clr-teal uppercase">Description: </span>
-      {{ task.description }}
-    </p>
-    <p>
-      <span class="fw-bold clr-teal uppercase">importance: </span>
-      {{ task.importance }}
-    </p>
-    <p>
-      <span class="fw-bold clr-teal uppercase">Status: </span>
-      {{ task.status }}
-    </p>
-    <p>
-      <span class="fw-bold clr-teal uppercase">is done: </span>
-      {{ task.status ? 'true' : 'false' }}
-    </p>
+    <div class="inner-txt flex-col">
+      <p>
+        <span class="fw-bold clr-teal uppercase">id: </span>
+        {{ task._id }}
+      </p>
+      <p>
+        <span class="fw-bold clr-teal uppercase">title: </span>
+        {{ task.title }}
+      </p>
+      <p>
+        <span class="fw-bold clr-teal uppercase">Description: </span>
+        {{ task.description }}
+      </p>
+      <p>
+        <span class="fw-bold clr-teal uppercase">importance: </span>
+        {{ task.importance }}
+      </p>
+      <p>
+        <span class="fw-bold clr-teal uppercase">Status: </span>
+        {{ task.status }}
+      </p>
+      <p>
+        <span class="fw-bold clr-teal uppercase">is done: </span>
+        {{ task.status ? 'true' : 'false' }}
+      </p>
+    </div>
     <button @click="goBack" class="btn btn-warning">go back</button>
   </section>
 </template>

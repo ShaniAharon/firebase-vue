@@ -1,10 +1,15 @@
 /** BASE **/
 @import './base/fonts.scss';
 @import './base/util.scss';
+@import './base/layout.scss';
 
 /** VIEWS **/
 @import './views/app.scss';
+@import './views/task-details.scss';
+@import './views/task-edit.scss';
 
 /** COMPONENTS **/
 @import './components/app-header.scss';
 @import './components/task-preview.scss';
+@import './components/task-list.scss';
+@import './components/task-filter.scss';

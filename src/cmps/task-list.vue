@@ -1,15 +1,13 @@
 <template>
-  <section class="task-list flex flex-col items-start gap-1">
-    <main class="flex items-start gap-2">
-      <task-preview
-        v-for="task in tasks"
-        :key="task._id"
-        :task="task"
-        @remove="removeTask"
-        @detail="taskDetails"
-      />
-    </main>
-  </section>
+  <main class="flex task-list items-start gap-2">
+    <task-preview
+      v-for="task in tasks"
+      :key="task._id"
+      :task="task"
+      @remove="removeTask"
+      @detail="taskDetails"
+    />
+  </main>
 </template>
 <script>
   import taskPreview from './task-preview.vue'
