@@ -3,6 +3,7 @@
   <section>
     <task-filter />
   </section>
+  <button @click="addTask" class="btn btn-warning">Add Task</button>
   <task-list
     @removed="removeTask"
     @details="showDetails"
@@ -31,6 +32,9 @@
     methods: {
       removeTask(taskId) {
         this.$store.dispatch({type: 'removeTask', id: taskId})
+      },
+      addTask() {
+        this.$router.push(`/task/edit`)
       },
       showDetails(taskId) {
         this.$router.push(`/task/${taskId}`)

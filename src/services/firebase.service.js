@@ -66,11 +66,11 @@ async function saveEntity(collectionName, entity) {
         }
     } else {
         try {
-            await addDoc(collection(db, collectionName), {
+            const task = await addDoc(collection(db, collectionName), {
                 ...entity,
                 createdAt: serverTimestamp(),
             })
-            return entity
+            return { _id: task.id, ...entity }
         } catch (e) {
             console.error("Error saving document: ", e);
         }

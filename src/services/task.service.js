@@ -30,8 +30,8 @@ function getEmptyTask() {
   return {
     title: '',
     description: '',
-    importance: 0,
-    createdAt: Date.now(),
+    importance: 1,
+    createdAt: new Date(),
     doneAt: null,
     status: ''
   }
