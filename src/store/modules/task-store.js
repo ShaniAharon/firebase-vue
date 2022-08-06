@@ -40,7 +40,7 @@ export default {
     async loadTasks({ commit, state }) {
       // commit({type: 'setIsLoading', isLoading: true});
       try {
-        var tasks = await taskService.query();
+        var tasks = await taskService.query(state.filterBy);
         commit({ type: 'setTasks', tasks });
       } catch (err) {
         console.error('Cannot Load tasks', err);

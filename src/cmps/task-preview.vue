@@ -3,7 +3,7 @@
     <h3 class="task__txt clr-teal uppercase">{{ task.title }}</h3>
     <p>
       <span class="fw-bold">Created At: </span>
-      {{ task.createdAt }}
+      {{ formatTime }}
     </p>
     <div class="btn-group actions">
       <button class="btn btn-primary" @click="showDetails">details</button>
@@ -36,6 +36,9 @@
     computed: {
       formatPrice() {
         return (this.task.price + '').slice(0, 1)
+      },
+      formatTime() {
+        return new Date(+this.task.createdAt).toLocaleString()
       },
     },
     unmounted() {},

@@ -8,22 +8,21 @@ export const taskService = {
   getEmptyTask,
 }
 
-const collection = 'task'
 
-async function query() {
-  return firebaseService.query(collection)
+async function query(filterBy = {}) {
+  return firebaseService.queryData(filterBy)
 }
 
 async function getTaskById(taskId) {
-  return firebaseService.getEntityById(collection, taskId)
+  return firebaseService.getEntityById(taskId)
 }
 
 async function saveTask(task) {
-  return firebaseService.saveEntity(collection, task)
+  return firebaseService.saveEntity(task)
 }
 
 async function removeTask(taskId) {
-  return firebaseService.removeEntity(collection, taskId)
+  return firebaseService.removeEntity(taskId)
 }
 
 function getEmptyTask() {
@@ -31,7 +30,7 @@ function getEmptyTask() {
     title: '',
     description: '',
     importance: 1,
-    createdAt: new Date(),
+    createdAt: Date.now() + '',
     doneAt: null,
     status: ''
   }

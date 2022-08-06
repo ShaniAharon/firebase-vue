@@ -1,7 +1,7 @@
 <template>
   <main class="main-layout-container"></main>
   <section>
-    <task-filter />
+    <task-filter @filtered="setFilter" />
   </section>
   <button @click="addTask" class="btn btn-warning">Add Task</button>
   <task-list

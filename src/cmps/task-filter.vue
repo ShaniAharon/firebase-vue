@@ -18,6 +18,7 @@
   import {utilService} from '../services/util.service.js'
   export default {
     name: 'task-filter',
+    emits: ['filtered'],
     data() {
       return {
         filterBy: {
@@ -30,7 +31,8 @@
     },
     methods: {
       setFilter() {
-        this.$emit('setFilter', JSON.parse(JSON.stringify(this.filterBy)))
+        console.log('this.filterBy', this.filterBy)
+        this.$emit('filtered', JSON.parse(JSON.stringify(this.filterBy)))
       },
     },
   }
